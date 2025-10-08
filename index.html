@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Impact - Dooradrusthi Foundation</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
+  .impact-section { text-align: center; padding: 60px 20px; }
+  .impact-value { font-size: 60px; color: #198754; font-weight: bold; }
+  .impact-label { font-size: 24px; color: #333; margin-top: 10px; }
+  .section-title { font-size: 32px; font-weight: 600; margin: 40px 0 20px; text-align: center; }
+
+  .scroll-wrapper { overflow: hidden; padding: 2rem 0; }
+  .scroll-container { display: flex; gap: 1.5rem; width: max-content; animation: scrollLeft 40s linear infinite; }
+  @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  .press-card, .article-card {
+    flex-shrink: 0;
+    width: 320px;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .press-card:hover, .article-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.2); }
+  .press-card img { object-fit: contain; height: 160px; margin: 2rem auto 1rem; display: block; }
+  .press-card h5 { font-size: 1.125rem; font-weight: 600; text-align: center; padding: 1rem; }
+  .article-card img { object-fit: cover; height: 200px; width: 100%; }
+  .article-card .card-body { padding: 1rem; display: flex; flex-direction: column; height: 100%; }
+  .article-card h5 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .scroll-wrapper::-webkit-scrollbar { display: none; }
+</style>
+</head>
+<body>
+
+<div class="container impact-section">
+  <h2>Our Contributions</h2>
+  <hr>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="impact-value" id="donationCounter">₹0</div>
+      <div class="impact-label">Total Donations</div>
+    </div>
+    <div class="col-md-4">
+      <div class="impact-value" id="peopleHelpedCounter">0</div>
+      <div class="impact-label">People Helped</div>
+    </div>
+    <div class="col-md-4">
+      <div class="impact-value" id="pendingAmountCounter">₹0</div>
+      <div class="impact-label">Pending Amount</div>
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title">Press Coverage</h2>
+<hr>
+<div class="scroll-wrapper">
+  <div class="scroll-container" id="pressContainer"></div>
+</div>
+
+<h2 class="section-title">Recent Articles</h2>
+<hr>
+<div class="scroll-wrapper">
+  <div class="scroll-container" id="articlesContainer"></div>
+</div>
+
+<script>
+async function loadData() {
+  try {
+    const response = await fetch('info.json'); // make sure info.json is in same folder or served via server
+    const data = await response.json();
+
+    // Counters
+    animateCounters(data.TotalDonations, data.PeopleHelped, data.PendingAmount, data.CountSpeed || 50);
+
+    // Press
+    const pressContainer = document.getElementById('pressContainer');
+    if (data.Press && data.Press.length > 0) {
+      pressContainer.innerHTML = [...data.Press, ...data.Press].map(p => `
+        <div class="press-card">
+          <a href="${p.Url}" target="_blank" style="display:flex;flex-direction:column;height:100%;">
+            <img src="${p.Image}" alt="${p.Description}">
+            <h5>${p.Description}</h5>
+          </a>
+        </div>
+      `).join('');
+    }
+
+    // Articles
+    const articlesContainer = document.getElementById('articlesContainer');
+    if (data.Articles && data.Articles.length > 0) {
+      articlesContainer.innerHTML = [...data.Articles, ...data.Articles].map(a => `
+        <div class="article-card">
+          <a href="article.html?id=${a.No}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:#000;">
+            <img src="${a.ImageUrl}" alt="${a.Title}">
+            <div class="card-body">
+              <h5>${a.Title}</h5>
+              <p style="font-size:0.9rem;color:#6c757d;">${a.Date}</p>
+              <p style="font-size:0.95rem;">${a.Description}</p>
+              <div class="mt-auto"><small style="color:#6c757d;">Posted by ${a.PostedBy}</small></div>
+            </div>
+          </a>
+        </div>
+      `).join('');
+    }
+  } catch(err) {
+    console.error('Error loading info.json:', err);
+  }
+}
+
+function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
+  const donationCounter = document.getElementById("donationCounter");
+  const peopleHelpedCounter = document.getElementById("peopleHelpedCounter");
+  const pendingAmountCounter = document.getElementById("pendingAmountCounter");
+
+  let donationCurrent = 0, peopleCurrent = 0, pendingCurrent = 0;
+  const donationSpeed = Math.max(1, Math.ceil(finalAmount / speed));
+  const peopleSpeed = Math.max(1, Math.ceil(finalDonations / speed));
+  const pendingSpeed = Math.max(1, Math.ceil(finalPendingAmt / speed));
+
+  function formatCurrency(num) { return "₹" + num.toLocaleString('en-IN'); }
+
+  function step() {
+    let running = false;
+    if (donationCurrent < finalAmount) { donationCurrent += donationSpeed; if(donationCurrent>finalAmount) donationCurrent=finalAmount; donationCounter.textContent=formatCurrency(donationCurrent); running=true; }
+    if (peopleCurrent < finalDonations) { peopleCurrent += peopleSpeed; if(peopleCurrent>finalDonations) peopleCurrent=finalDonations; peopleHelpedCounter.textContent=peopleCurrent.toLocaleString('en-IN'); running=true; }
+    if (pendingCurrent < finalPendingAmt) { pendingCurrent += pendingSpeed; if(pendingCurrent>finalPendingAmt) pendingCurrent=finalPendingAmt; pendingAmountCounter.textContent=formatCurrency(pendingCurrent); running=true; }
+    if(running) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+loadData();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
