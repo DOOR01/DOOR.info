@@ -123,6 +123,7 @@ function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
 
   function formatCurrency(num) { return "₹" + num.toLocaleString('en-IN'); }
 
+  
   function step() {
     let running = false;
     if (donationCurrent < finalAmount) { donationCurrent += donationSpeed; if(donationCurrent>finalAmount) donationCurrent=finalAmount; donationCounter.textContent=formatCurrency(donationCurrent); running=true; }
