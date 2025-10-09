@@ -4,6 +4,70 @@
 <meta charset="UTF-8">
 <title>Our Impact - Dooradrusthi Foundation</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+ <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+ <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            color: #0d6efd !important;
+            border-bottom: 2px solid #0d6efd;
+        }
+
+        .navbar {
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.75rem 1rem;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #333 !important;
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .navbar-brand img {
+            height: 70px;
+        }
+
+        .container.body-content {
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        footer {
+            padding: 1.5rem 0;
+            background-color: #f0f0f0;
+            color: #666;
+            margin-top: 3rem;
+            border-top: 1px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                margin-top: 1rem;
+            }
+
+            .navbar-brand img {
+                height: 50px;
+            }
+        }
+    </style>
 <style>
   body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
   .impact-section { text-align: center; padding: 60px 20px; }
@@ -36,6 +100,36 @@
 </head>
 <body>
 
+     <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container" style="max-width: 98%">
+                <a class="navbar-brand" href="#">
+                    <img src="Images/DOOR Logo png.png" alt="DOOR Logo" style="height:150px; width:150px" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Impact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="articles.html">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="donate.html">Donate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
 <div class="container impact-section">
   <h2>Our Contributions</h2>
   <hr>
@@ -66,6 +160,14 @@
 <div class="scroll-wrapper">
   <div class="scroll-container" id="articlesContainer"></div>
 </div>
+<footer class="text-center">
+        <div class="container">
+            <p>&copy; 2025 - Dooradrusthi Foundation. All rights reserved.</p>
+        </div>
+    </footer>
+ <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 <script>
 async function loadData() {
@@ -129,9 +231,27 @@ function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
     if (donationCurrent < finalAmount) { donationCurrent += donationSpeed; if(donationCurrent>finalAmount) donationCurrent=finalAmount; donationCounter.textContent=formatCurrency(donationCurrent); running=true; }
     if (peopleCurrent < finalDonations) { peopleCurrent += peopleSpeed; if(peopleCurrent>finalDonations) peopleCurrent=finalDonations; peopleHelpedCounter.textContent=peopleCurrent.toLocaleString('en-IN'); running=true; }
     if (pendingCurrent < finalPendingAmt) { pendingCurrent += pendingSpeed; if(pendingCurrent>finalPendingAmt) pendingCurrent=finalPendingAmt; pendingAmountCounter.textContent=formatCurrency(pendingCurrent); running=true; }
-    if(running) requestAnimationFrame(step);
+    if(running) { requestAnimationFrame(step);
+    }
+    else {
+                  startIncrementingInterval();
+
+    }
   }
+
+  function startIncrementingInterval() {
+        setInterval(() => {
+                        donationCurrent++;
+          pendingCurrent++;
+            donationCounter.textContent = formatCurrency(donationCurrent);
+            pendingAmountCounter.textContent = formatCurrency(pendingCurrent);
+
+                  }, 3000);   
+  }   
+
   requestAnimationFrame(step);
+
+  
 }
 
 loadData();

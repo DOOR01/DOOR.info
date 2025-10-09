@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dooradrushti Foundation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+    <!-- Optional: Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            color: #0d6efd;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .about-section {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .para {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .para span {
+            font-weight: 600;
+            color: #0d6efd;
+            font-size: 1.15rem;
+        }
+
+        .image-wrapper {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            object-fit: cover;
+        }
+
+        @media (min-width: 768px) {
+            .d-flex-about {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+            }
+            .about-text {
+                flex: 1;
+            }
+            .image-wrapper {
+                flex: 1;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            color: #0d6efd !important;
+            border-bottom: 2px solid #0d6efd;
+        }
+
+        .navbar {
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.75rem 1rem;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #333 !important;
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .navbar-brand img {
+            height: 70px;
+        }
+
+        .container.body-content {
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        footer {
+            padding: 1.5rem 0;
+            background-color: #f0f0f0;
+            color: #666;
+            margin-top: 3rem;
+            border-top: 1px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                margin-top: 1rem;
+            }
+
+            .navbar-brand img {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+     <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container" style="max-width: 98%">
+                <a class="navbar-brand" href="#">
+                    <img src="Images/DOOR Logo png.png" alt="DOOR Logo" style="height:150px; width:150px" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Impact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="articles.html">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="donate.html">Donate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="about-section">
+        <h2>ABOUT US</h2>
+
+        <div class="d-flex-about flex-column flex-md-row">
+            <div class="about-text">
+                <p class="para">
+                    Dooradrushti Foundation is a Non-Governmental Organization (NGO) registered as a Section-8 company with the Ministry of Corporate Affairs, Govt of India. The reason for making it a Section 8 company is due to high transparency. Unlike other Trusts and Societies, a Section 8 company like us will have maximum transparency in terms of funds. In addition to that, we will be sharing all the donations details and expenses including bank statements from time to time.
+                </p>
+            </div>
+
+            <div class="image-wrapper">
+                <img id="imgAboutUs" src="Images/DoorAboutsus.jpeg" alt="Dooradrushti Foundation" />
+            </div>
+        </div>
+
+        <p class="para">
+            <span>Vision :</span> DooraDrushti Foundation is established to help the under privileged people in terms of Health and Education. <br />
+            We will identify the deserving people and will release the funds directly to the hospital or educational institutions without any middle person involvement.
+        </p>
+
+        <p class="para">
+            <span>Mission :</span> Donate Only One Rupee is our innovative mission or campaign to collect funds for DooraDrushti foundation.<br />
+            As the name says, every person has to Donate Only One Rupee per day. We are planning to make a group of 1 lakh people, where everyone will donate just one rupee per day and we can collect 1 lakh in a day and can help 1-2 people per day.
+        </p>
+    </section>
+
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2025 - Dooradrusthi Foundation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+  // Highlight nav link based on current URL
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname.split('/').pop(); // get current page filename
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(link => {
+      // Compare href to current page file name
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  });
+</script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
