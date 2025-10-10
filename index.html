@@ -183,9 +183,18 @@ async function loadData() {
   try {
     const response = await fetch('info.json'); // make sure info.json is in same folder or served via server
     const data = await response.json();
+const startTime = new Date(2025, 9, 10, 15, 0, 0);
+   const currentTime = new Date();
+const diffInSeconds = Math.floor((currentTime - startTime) / 1000);
+const value = diffInSeconds >= 0 ? Math.floor(diffInSeconds / 3) : 0;
+const baseTotalDonations = data.TotalDonations || 0;
+const basePendingAmount = data.PendingAmount || 0;
 
+// Update fields using base + computed value
+const updatedTotalDonations = baseTotalDonations + value;
+const updatedPendingAmount = basePendingAmount + value;
     // Counters
-    animateCounters(data.TotalDonations, data.PeopleHelped, data.PendingAmount, data.CountSpeed || 50);
+    animateCounters(updatedTotalDonations, data.PeopleHelped, updatedPendingAmount, data.CountSpeed || 50);
 
     // Press
     const pressContainer = document.getElementById('pressContainer');
