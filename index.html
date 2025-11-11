@@ -4,11 +4,9 @@
 <meta charset="UTF-8">
 <title>Our Impact - Dooradrusthi Foundation</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
- <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="Content/Site.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
- <style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
 /* ===============================
    GLOBAL STYLES
 ================================== */
@@ -21,12 +19,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Smooth section spacing */
-.container.body-content,
-.impact-section {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
+/* Navbar left untouched */
 
 /* ===============================
    IMPACT SECTION
@@ -37,12 +30,8 @@ body {
   border-radius: 20px;
   padding: 60px 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.impact-section:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .impact-section h2 {
@@ -61,13 +50,11 @@ body {
   border-radius: 2px;
 }
 
-/* Impact counters */
 .impact-value {
   font-size: 64px;
   font-weight: 800;
   color: #0d6efd;
   letter-spacing: -1px;
-  margin-bottom: 0.25rem;
   text-shadow: 0 3px 10px rgba(13, 110, 253, 0.15);
 }
 
@@ -119,7 +106,6 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* Hide scrollbar */
 .scroll-wrapper::-webkit-scrollbar {
   display: none;
 }
@@ -208,6 +194,85 @@ body {
 }
 
 /* ===============================
+   DONATION SECTION
+================================== */
+#donation {
+  background: #fff;
+  border-radius: 20px;
+  padding: 60px 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+#donation h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+#donation p {
+  color: #555;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.donation-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.qr-frame {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  width: 220px;
+}
+
+.qr-frame:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.qr-frame img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Blinking donate button */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(13, 110, 253, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0); }
+}
+
+.donate-btn {
+  background: #0d6efd;
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 40px;
+  border-radius: 50px;
+  border: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.donate-btn:hover {
+  background: #084298;
+  transform: translateY(-3px);
+}
+
+/* ===============================
    FOOTER
 ================================== */
 footer {
@@ -215,220 +280,197 @@ footer {
   color: white;
   text-align: center;
   padding: 2rem 0;
-  border-top: none;
   font-size: 0.95rem;
 }
 
-footer p {
-  margin: 0;
-  letter-spacing: 0.3px;
-}
-
 /* ===============================
-   RESPONSIVE DESIGN
+   RESPONSIVE
 ================================== */
-@media (max-width: 992px) {
+@media (max-width: 767px) {
   .impact-value {
     font-size: 48px;
-  }
-  .impact-label {
-    font-size: 1rem;
-  }
-  .scroll-container {
-    animation: none;
-    overflow-x: auto;
-  }
-}
-
-@media (max-width: 767px) {
-  .impact-section {
-    padding: 40px 10px;
-  }
-  .impact-section h2 {
-    font-size: 1.8rem;
-  }
-  .section-title {
-    font-size: 1.6rem;
   }
   .press-card,
   .article-card {
     width: 90%;
-    margin: 0 auto;
+  }
+  #donation {
+    padding: 40px 10px;
+  }
+  .qr-frame {
+    width: 180px;
   }
 }
 </style>
-
 </head>
+
 <body>
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container" style="max-width: 98%">
+        <a class="navbar-brand" href="#">
+          <img src="Images/DOOR Logo png.png" alt="DOOR Logo" style="height:150px; width:150px" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-     <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container" style="max-width: 98%">
-                <a class="navbar-brand" href="#">
-                    <img src="Images/DOOR Logo png.png" alt="DOOR Logo" style="height:150px; width:150px" />
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Impact</a></li>
+            <li class="nav-item"><a class="nav-link" href="Articles.html">Articles</a></li>
+            <li class="nav-item"><a class="nav-link" href="Donate.html">Donate</a></li>
+            <li class="nav-item"><a class="nav-link" href="About.html">About Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="index.html">Impact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Articles.html">Articles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Donate.html">Donate</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="About.html">About Us</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <!-- IMPACT SECTION -->
+  <div class="container impact-section">
+    <h2>Our Contributions</h2>
+    <hr>
+    <div>
+      <div>
+        <div style="color: orange;" class="impact-value" id="donationCounter">₹0</div>
+        <div class="impact-label">Total Donations</div>
+      </div>
+      <div>
+        <div style="color: blue;" class="impact-value" id="peopleHelpedCounter">0</div>
+        <div class="impact-label">People Helped</div>
+      </div>
+      <div>
+        <div class="impact-value" id="pendingAmountCounter">₹0</div>
+        <div class="impact-label">Pending Amount</div>
+      </div>
+    </div>
+  </div>
 
-<div class="container impact-section">
-  <h2>Our Contributions</h2>
+  <!-- DONATION SECTION -->
+  <section id="donation" class="container">
+    <h2>Support Our Mission</h2>
+    <hr>
+    <p>Your generous donation helps us empower communities, provide resources, and create lasting change. Every contribution counts.</p>
+
+    <div class="donation-box">
+      <div class="qr-frame">
+        <img src="Images/qr-code.png" alt="Donate QR Code">
+      </div>
+      <button class="donate-btn" onclick="window.location.href='Donate.html'">Donate Now</button>
+    </div>
+  </section>
+
+  <!-- PRESS COVERAGE -->
+  <h2 class="section-title">Press Coverage</h2>
   <hr>
-<div>
-  <div>
-    <div style="color: orange;" class="impact-value" id="donationCounter">₹0</div>
-    <div class="impact-label">Total Donations</div>
+  <div class="scroll-wrapper">
+    <div class="scroll-container" id="pressContainer"></div>
   </div>
-  <div>
-    <div style="color: blue;" class="impact-value" id="peopleHelpedCounter">0</div>
-    <div class="impact-label">People Helped</div>
+
+  <!-- ARTICLES -->
+  <h2 class="section-title">Recent Articles</h2>
+  <hr>
+  <div class="scroll-wrapper">
+    <div class="scroll-container" id="articlesContainer"></div>
   </div>
-  <div>
-    <div class="impact-value" id="pendingAmountCounter">₹0</div>
-    <div class="impact-label">Pending Amount</div>
-  </div>
-</div>
 
+  <!-- FOOTER -->
+  <footer class="text-center">
+    <div class="container">
+      <p>&copy; 2025 - Dooradrusthi Foundation. All rights reserved.</p>
+    </div>
+  </footer>
 
+  <!-- JS -->
+  <script src="Scripts/jquery-3.4.1.min.js"></script>
+  <script src="Scripts/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
+  <script>
+  async function loadData() {
+    try {
+      const response = await fetch('info.json');
+      const data = await response.json();
+      const startTime = new Date(2025, 9, 10, 15, 0, 0);
+      const currentTime = new Date();
+      const diffInSeconds = Math.floor((currentTime - startTime) / 1000);
+      const value = diffInSeconds >= 0 ? Math.floor(diffInSeconds / 3) : 0;
+      const baseTotalDonations = data.TotalDonations || 0;
+      const basePendingAmount = data.PendingAmount || 0;
 
-<h2 class="section-title">Press Coverage</h2>
-<hr>
-<div class="scroll-wrapper">
-  <div class="scroll-container" id="pressContainer"></div>
-</div>
+      const updatedTotalDonations = baseTotalDonations + value;
+      const updatedPendingAmount = basePendingAmount + value;
+      animateCounters(updatedTotalDonations, data.PeopleHelped, updatedPendingAmount, data.CountSpeed || 50);
 
-<h2 class="section-title">Recent Articles</h2>
-<hr>
-<div class="scroll-wrapper">
-  <div class="scroll-container" id="articlesContainer"></div>
-</div>
-<footer class="text-center">
-        <div class="container">
-            <p>&copy; 2025 - Dooradrusthi Foundation. All rights reserved.</p>
-        </div>
-    </footer>
- <script src="Scripts/jquery-3.4.1.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+      const pressContainer = document.getElementById('pressContainer');
+      if (data.Press && data.Press.length > 0) {
+        pressContainer.innerHTML = [...data.Press, ...data.Press].map(p => `
+          <div class="press-card">
+            <a href="${p.Url}" target="_blank" style="display:flex;flex-direction:column;height:100%;">
+              <img src="${p.Image}" alt="${p.Description}">
+              <h5>${p.Description}</h5>
+            </a>
+          </div>
+        `).join('');
+      }
 
-<script>
-async function loadData() {
-  try {
-    const response = await fetch('info.json'); // make sure info.json is in same folder or served via server
-    const data = await response.json();
-const startTime = new Date(2025, 9, 10, 15, 0, 0);
-   const currentTime = new Date();
-const diffInSeconds = Math.floor((currentTime - startTime) / 1000);
-const value = diffInSeconds >= 0 ? Math.floor(diffInSeconds / 3) : 0;
-const baseTotalDonations = data.TotalDonations || 0;
-const basePendingAmount = data.PendingAmount || 0;
-
-// Update fields using base + computed value
-const updatedTotalDonations = baseTotalDonations + value;
-const updatedPendingAmount = basePendingAmount + value;
-    // Counters
-    animateCounters(updatedTotalDonations, data.PeopleHelped, updatedPendingAmount, data.CountSpeed || 50);
-
-    // Press
-    const pressContainer = document.getElementById('pressContainer');
-    if (data.Press && data.Press.length > 0) {
-      pressContainer.innerHTML = [...data.Press, ...data.Press].map(p => `
-        <div class="press-card">
-          <a href="${p.Url}" target="_blank" style="display:flex;flex-direction:column;height:100%;">
-            <img src="${p.Image}" alt="${p.Description}">
-            <h5>${p.Description}</h5>
-          </a>
-        </div>
-      `).join('');
-    }
-
-    // Articles
-    const articlesContainer = document.getElementById('articlesContainer');
-    if (data.Articles && data.Articles.length > 0) {
-      articlesContainer.innerHTML = [...data.Articles, ...data.Articles].map(a => `
-        <div class="article-card">
-          <a href="Article.html?id=${a.No}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:#000;">
-            <img src="${a.ImageUrl}" alt="${a.Title}">
-            <div class="card-body">
-              <h5>${a.Title}</h5>
-              <p style="font-size:0.9rem;color:#6c757d;">${a.Date}</p>
-              <p style="font-size:0.95rem;">${a.Description}</p>
-              <div class="mt-auto"><small style="color:#6c757d;">Posted by ${a.PostedBy}</small></div>
-            </div>
-          </a>
-        </div>
-      `).join('');
-    }
-  } catch(err) {
-    console.error('Error loading info.json:', err);
-  }
-}
-
-function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
-  const donationCounter = document.getElementById("donationCounter");
-  const peopleHelpedCounter = document.getElementById("peopleHelpedCounter");
-  const pendingAmountCounter = document.getElementById("pendingAmountCounter");
-
-  let donationCurrent = 0, peopleCurrent = 0, pendingCurrent = 0;
-  const donationSpeed = Math.max(1, Math.ceil(finalAmount / speed));
-  const peopleSpeed = Math.max(1, Math.ceil(finalDonations / speed));
-  const pendingSpeed = Math.max(1, Math.ceil(finalPendingAmt / speed));
-
-  function formatCurrency(num) { return "₹" + num.toLocaleString('en-IN'); }
-
-  
-  function step() {
-    let running = false;
-    if (donationCurrent < finalAmount) { donationCurrent += donationSpeed; if(donationCurrent>finalAmount) donationCurrent=finalAmount; donationCounter.textContent=formatCurrency(donationCurrent); running=true; }
-    if (peopleCurrent < finalDonations) { peopleCurrent += peopleSpeed; if(peopleCurrent>finalDonations) peopleCurrent=finalDonations; peopleHelpedCounter.textContent=peopleCurrent.toLocaleString('en-IN'); running=true; }
-    if (pendingCurrent < finalPendingAmt) { pendingCurrent += pendingSpeed; if(pendingCurrent>finalPendingAmt) pendingCurrent=finalPendingAmt; pendingAmountCounter.textContent=formatCurrency(pendingCurrent); running=true; }
-    if(running) { requestAnimationFrame(step);
-    }
-    else {
-                  startIncrementingInterval();
-
+      const articlesContainer = document.getElementById('articlesContainer');
+      if (data.Articles && data.Articles.length > 0) {
+        articlesContainer.innerHTML = [...data.Articles, ...data.Articles].map(a => `
+          <div class="article-card">
+            <a href="Article.html?id=${a.No}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:#000;">
+              <img src="${a.ImageUrl}" alt="${a.Title}">
+              <div class="card-body">
+                <h5>${a.Title}</h5>
+                <p style="font-size:0.9rem;color:#6c757d;">${a.Date}</p>
+                <p style="font-size:0.95rem;">${a.Description}</p>
+                <div class="mt-auto"><small style="color:#6c757d;">Posted by ${a.PostedBy}</small></div>
+              </div>
+            </a>
+          </div>
+        `).join('');
+      }
+    } catch(err) {
+      console.error('Error loading info.json:', err);
     }
   }
 
-  function startIncrementingInterval() {
-        setInterval(() => {
-                        donationCurrent++;
-          pendingCurrent++;
-            donationCounter.textContent = formatCurrency(donationCurrent);
-            pendingAmountCounter.textContent = formatCurrency(pendingCurrent);
+  function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
+    const donationCounter = document.getElementById("donationCounter");
+    const peopleHelpedCounter = document.getElementById("peopleHelpedCounter");
+    const pendingAmountCounter = document.getElementById("pendingAmountCounter");
 
-                  }, 3000);   
-  }   
+    let donationCurrent = 0, peopleCurrent = 0, pendingCurrent = 0;
+    const donationSpeed = Math.max(1, Math.ceil(finalAmount / speed));
+    const peopleSpeed = Math.max(1, Math.ceil(finalDonations / speed));
+    const pendingSpeed = Math.max(1, Math.ceil(finalPendingAmt / speed));
 
-  requestAnimationFrame(step);
+    function formatCurrency(num) { return "₹" + num.toLocaleString('en-IN'); }
 
-  
-}
+    function step() {
+      let running = false;
+      if (donationCurrent < finalAmount) { donationCurrent += donationSpeed; if(donationCurrent>finalAmount) donationCurrent=finalAmount; donationCounter.textContent=formatCurrency(donationCurrent); running=true; }
+      if (peopleCurrent < finalDonations) { peopleCurrent += peopleSpeed; if(peopleCurrent>finalDonations) peopleCurrent=finalDonations; peopleHelpedCounter.textContent=peopleCurrent.toLocaleString('en-IN'); running=true; }
+      if (pendingCurrent < finalPendingAmt) { pendingCurrent += pendingSpeed; if(pendingCurrent>finalPendingAmt) pendingCurrent=finalPendingAmt; pendingAmountCounter.textContent=formatCurrency(pendingCurrent); running=true; }
+      if(running) { requestAnimationFrame(step); }
+      else { startIncrementingInterval(); }
+    }
 
-loadData();
-</script>
+    function startIncrementingInterval() {
+      setInterval(() => {
+        donationCurrent++;
+        pendingCurrent++;
+        donationCounter.textContent = formatCurrency(donationCurrent);
+        pendingAmountCounter.textContent = formatCurrency(pendingCurrent);
+      }, 3000);
+    }
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    requestAnimationFrame(step);
+  }
+
+  loadData();
+  </script>
 </body>
 </html>
