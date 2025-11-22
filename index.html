@@ -8,6 +8,62 @@
 <link href="site.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
+  <style>
+    .scroll-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.scroll-btn:hover {
+  background: #0d6efd;
+  color: white;
+}
+
+.scroll-btn.left { left: -20px; }
+.scroll-btn.right { right: -20px; }
+
+@media (max-width: 768px) {
+  .scroll-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+  .scroll-btn.left { left: 0; }
+  .scroll-btn.right { right: 0; }
+}
+
+    </style>
+
+  <script>
+function scrollLeft(id) {
+    const container = document.getElementById(id);
+    container.scrollBy({ left: -350, behavior: 'smooth' });
+}
+
+function scrollRight(id) {
+    const container = document.getElementById(id);
+    container.scrollBy({ left: 350, behavior: 'smooth' });
+}
+</script>
+
 <body>
 
 <!-- Navbar placeholder -->
@@ -46,16 +102,32 @@
 <!-- Press Coverage -->
 <h2 class="section-title">Press Coverage</h2>
 <hr>
-<div class="scroll-wrapper">
-  <div class="scroll-container" id="pressContainer"></div>
+
+<div class="scroll-area">
+  <button class="scroll-btn left" onclick="scrollLeft('pressContainer')">&#10094;</button>
+
+  <div class="scroll-wrapper">
+    <div class="scroll-container" id="pressContainer"></div>
+  </div>
+
+  <button class="scroll-btn right" onclick="scrollRight('pressContainer')">&#10095;</button>
 </div>
+
 
 <!-- Recent Articles -->
 <h2 class="section-title">Recent Articles</h2>
 <hr>
-<div class="scroll-wrapper">
-  <div class="scroll-container" id="articlesContainer"></div>
+
+<div class="scroll-area">
+  <button class="scroll-btn left" onclick="scrollLeft('articlesContainer')">&#10094;</button>
+
+  <div class="scroll-wrapper">
+    <div class="scroll-container" id="articlesContainer"></div>
+  </div>
+
+  <button class="scroll-btn right" onclick="scrollRight('articlesContainer')">&#10095;</button>
 </div>
+
 
 <!-- Footer -->
 <footer>
