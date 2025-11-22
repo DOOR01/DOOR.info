@@ -2,285 +2,390 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Our Impact - Dooradrusthi Foundation</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="site.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-
 <style>
-body {
-  font-family: "Inter", sans-serif;
-  background: #f8f9fa;
-}
+  /* Base styles for responsiveness and new elements */
+  body {
+    font-family: 'Inter', sans-serif;
+    padding-bottom: 70px; /* Space for the footer */
+  }
 
-/* Impact Section */
-.impact-section {
-  text-align: center;
-  margin-top: 40px;
-}
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
-.impact-section .impact-value {
-  font-size: 2.2rem;
-  font-weight: bold;
-}
+  /* Impact Section Styling */
+  .impact-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
-.impact-label {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-top: 6px;
-}
+  .impact-section .d-flex > div {
+    text-align: center;
+    margin: 10px;
+    flex-grow: 1; /* Allow flex items to grow */
+    min-width: 120px; /* Ensure space for each item on small screens */
+  }
 
-@media(max-width: 768px) {
-  .impact-value { font-size: 1.8rem; }
-}
+  .impact-value {
+    font-size: 2.5rem; /* Larger font for impact numbers */
+    font-weight: 600;
+  }
+  
+  .impact-label {
+    font-size: 1rem;
+    color: #6c757d;
+  }
 
-/* Donation Section */
-.donation-section {
-  text-align: center;
-  padding: 40px 20px;
-  background: white;
-}
+  /* Donation Section Styling */
+  .donation-section {
+    text-align: center;
+    padding: 30px 15px;
+    background-color: #f8f9fa;
+  }
 
-.donation-section img {
-  width: 220px;
-  border-radius: 10px;
-}
+  .donation-qr img {
+    max-width: 250px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-/* Scroll Wrapper */
-.scroll-wrapper {
-  position: relative;
-  overflow: hidden;
-  padding: 10px 0;
-}
+  /* Scrolling/Carousel Styles */
+  .section-title {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .scroll-wrapper {
+    position: relative;
+    padding: 0 15px; /* Padding for the container */
+    margin-bottom: 30px;
+  }
 
-.scroll-container {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 10px;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-}
+  .scroll-container {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px; /* Space for shadow/scrollbar */
+    scrollbar-width: none; /* Firefox */
+  }
 
-.scroll-container::-webkit-scrollbar {
-  display: none;
-}
+  .scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 
-.press-card, .article-card {
-  min-width: 260px;
-  max-width: 260px;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  scroll-snap-align: start;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
+  /* Card styles */
+  .press-card, .article-card {
+    flex: 0 0 auto; /* Prevent stretching */
+    width: 250px; /* Fixed width for scrolling effect */
+    margin-right: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
 
-.press-card img, .article-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
+  .press-card img, .article-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
 
-/* Arrow Buttons */
-.arrow-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  cursor: pointer;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .press-card h5, .article-card h5 {
+    font-size: 1.1rem;
+    padding: 10px;
+    margin-bottom: 0;
+    color: #000;
+  }
+  
+  .article-card .card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 
-.arrow-left { left: 5px; }
-.arrow-right { right: 5px; }
+  .article-card p {
+    margin-bottom: 5px;
+  }
 
-.arrow-btn:hover {
-  background: #f1f1f1;
-}
+  /* Navigation Arrows */
+  .scroll-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    font-size: 2rem;
+    color: #007bff;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    line-height: 1;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    display: none; /* Hidden by default */
+  }
 
-/* Hide arrows on mobile */
-@media(max-width: 768px) {
-  .arrow-btn { display: none; }
-}
+  .scroll-nav.left {
+    left: 20px;
+  }
+
+  .scroll-nav.right {
+    right: 20px;
+  }
+  
+  /* Show arrows on larger screens */
+  @media (min-width: 768px) {
+    .scroll-nav {
+      display: block;
+    }
+  }
+
+  /* Mobile-specific adjustments */
+  @media (max-width: 576px) {
+    .impact-section .d-flex {
+      flex-direction: column; /* Stack impact counters vertically */
+      align-items: center;
+    }
+    
+    .impact-section .d-flex > div {
+      width: 100%;
+      max-width: 300px;
+      margin: 5px 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    
+    .impact-section .d-flex > div:last-child {
+      border-bottom: none;
+    }
+    
+    .impact-value {
+      font-size: 2rem;
+    }
+
+    .press-card, .article-card {
+      width: 80vw; /* Make cards wider on small screens */
+      max-width: 300px;
+    }
+  }
+
+  /* Footer Styling */
+  footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #343a40;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+  }
 </style>
 </head>
 <body>
 
-<!-- Navbar placeholder -->
 <div id="navbar"></div>
 
-<!-- Impact Section -->
 <div class="container impact-section">
-  <h2>Our Contributions</h2>
-  <hr>
-  <div class="d-flex justify-content-around flex-wrap mt-4">
-    <div>
-      <div style="color: orange;" class="impact-value" id="donationCounter">₹0</div>
-      <div class="impact-label">Total Donations</div>
-    </div>
-    <div>
-      <div style="color: blue;" class="impact-value" id="peopleHelpedCounter">0</div>
-      <div class="impact-label">People Helped</div>
-    </div>
-    <div>
-      <div class="impact-value" id="pendingAmountCounter">₹0</div>
-      <div class="impact-label">Pending Amount</div>
-    </div>
-  </div>
+  <h2>Our Contributions</h2>
+  <hr>
+  <div class="d-flex justify-content-around flex-wrap mt-4">
+    <div class="p-2">
+      <div style="color: orange;" class="impact-value" id="donationCounter">₹0</div>
+      <div class="impact-label">Total Donations</div>
+    </div>
+    <div class="p-2">
+      <div style="color: blue;" class="impact-value" id="peopleHelpedCounter">0</div>
+      <div class="impact-label">People Helped</div>
+    </div>
+    <div class="p-2">
+      <div class="impact-value" id="pendingAmountCounter">₹0</div>
+      <div class="impact-label">Pending Amount</div>
+    </div>
+  </div>
 </div>
 
-<!-- Donation Section -->
 <div class="donation-section">
-  <h2>Support Our Cause</h2>
-  <p>Your donations help us reach more people. Scan the QR below or click the Donate button to contribute.</p>
-  <div class="donation-qr">
-    <img src="Images/DOOR QR.jpeg" alt="Donate QR Code">
-  </div>
-  <a href="Donate.html" class="btn btn-primary btn-lg mt-3">Donate Now</a>
+  <h2>Support Our Cause</h2>
+  <p>Your donations help us reach more people. Scan the QR below or click the Donate button to contribute.</p>
+  <div class="donation-qr">
+    <img src="Images/DOOR QR.jpeg" alt="Donate QR Code">
+  </div>
+  <a href="Donate.html" class="btn btn-primary btn-lg">Donate Now</a>
 </div>
 
-<!-- Press Coverage -->
-<h2 class="section-title text-center mt-5">Press Coverage</h2>
+<h2 class="section-title">Press Coverage</h2>
 <hr>
-
-<div class="scroll-wrapper">
-  <button class="arrow-btn arrow-left" onclick="scrollLeft('pressContainer')">&#10094;</button>
-  <div class="scroll-container" id="pressContainer"></div>
-  <button class="arrow-btn arrow-right" onclick="scrollRight('pressContainer')">&#10095;</button>
+<div class="scroll-wrapper" id="pressScrollWrapper">
+  <button class="scroll-nav left" aria-label="Scroll Left" onclick="scrollContainer('pressContainer', -250)">&lt;</button>
+  <div class="scroll-container" id="pressContainer">
+      </div>
+  <button class="scroll-nav right" aria-label="Scroll Right" onclick="scrollContainer('pressContainer', 250)">&gt;</button>
 </div>
 
-<!-- Recent Articles -->
-<h2 class="section-title text-center mt-5">Recent Articles</h2>
+<h2 class="section-title">Recent Articles</h2>
 <hr>
-
-<div class="scroll-wrapper">
-  <button class="arrow-btn arrow-left" onclick="scrollLeft('articlesContainer')">&#10094;</button>
-  <div class="scroll-container" id="articlesContainer"></div>
-  <button class="arrow-btn arrow-right" onclick="scrollRight('articlesContainer')">&#10095;</button>
+<div class="scroll-wrapper" id="articlesScrollWrapper">
+  <button class="scroll-nav left" aria-label="Scroll Left" onclick="scrollContainer('articlesContainer', -250)">&lt;</button>
+  <div class="scroll-container" id="articlesContainer">
+      </div>
+  <button class="scroll-nav right" aria-label="Scroll Right" onclick="scrollContainer('articlesContainer', 250)">&gt;</button>
 </div>
 
-<!-- Footer -->
-<footer class="text-center mt-5 mb-3">
-  <p>&copy; 2025 - Dooradrusthi Foundation. All rights reserved.</p>
+<footer>
+  <p>&copy; 2025 - Dooradrusthi Foundation. All rights reserved.</p>
 </footer>
 
-<!-- Scripts -->
 <script src="Scripts/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-<!-- Load navbar dynamically -->
+<script>
+/**
+ * Scrolls a horizontal container by a specified amount.
+ * @param {string} containerId - The ID of the scroll container element.
+ * @param {number} scrollAmount - The number of pixels to scroll (positive for right, negative for left).
+ */
+function scrollContainer(containerId, scrollAmount) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.scrollLeft += scrollAmount;
+    }
+}
+</script>
+
+
 <script>
 fetch("navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar").innerHTML = data;
-    const currentPage = window.location.pathname.split("/").pop();
-    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
-      if (link.getAttribute("href") === currentPage) link.classList.add("active");
-    });
-  });
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+    const currentPage = window.location.pathname.split("/").pop();
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+      if (link.getAttribute("href") === currentPage) link.classList.add("active");
+    });
+  })
+  .catch(err => console.error("Navbar load failed:", err));
 </script>
 
-<!-- Scroll arrow functions -->
-<script>
-function scrollLeft(id) {
-  document.getElementById(id).scrollBy({ left: -300, behavior: "smooth" });
-}
-function scrollRight(id) {
-  document.getElementById(id).scrollBy({ left: 300, behavior: "smooth" });
-}
-</script>
-
-<!-- Load dynamic data -->
 <script>
 async function loadData() {
-  try {
-    const response = await fetch('info.json');
-    const data = await response.json();
+  try {
+    const response = await fetch('info.json');
+    const data = await response.json();
+    const startTime = new Date(2025, 9, 10, 15, 0, 0); // Month is 0-indexed (Oct is 9)
+    const currentTime = new Date();
+    const diffInSeconds = Math.floor((currentTime - startTime) / 1000);
+    const value = diffInSeconds >= 0 ? Math.floor(diffInSeconds / 3) : 0;
+    const baseTotalDonations = data.TotalDonations || 0;
+    const basePendingAmount = data.PendingAmount || 0;
 
-    const startTime = new Date(2025, 9, 10, 15, 0, 0);
-    const currentTime = new Date();
-    const diffInSeconds = Math.floor((currentTime - startTime) / 1000);
-    const value = diffInSeconds >= 0 ? Math.floor(diffInSeconds / 3) : 0;
+    const updatedTotalDonations = baseTotalDonations + value;
+    const updatedPendingAmount = basePendingAmount + value;
 
-    const updatedTotalDonations = (data.TotalDonations || 0) + value;
-    const updatedPendingAmount = (data.PendingAmount || 0) + value;
+    animateCounters(updatedTotalDonations, data.PeopleHelped, updatedPendingAmount, data.CountSpeed || 50);
 
-    animateCounters(updatedTotalDonations, data.PeopleHelped, updatedPendingAmount, data.CountSpeed || 50);
+    const pressContainer = document.getElementById('pressContainer');
+    if (data.Press && data.Press.length > 0) {
+      // Duplicate array to allow for infinite-like scroll effect on repeat
+      pressContainer.innerHTML = [...data.Press, ...data.Press].map(p => `
+        <div class="press-card">
+          <a href="${p.Url}" target="_blank" style="display:flex;flex-direction:column;height:100%;">
+            <img src="${p.Image}" alt="${p.Description}">
+            <h5>${p.Description}</h5>
+          </a>
+        </div>
+      `).join('');
+    }
 
-    /* Press */
-    const pressContainer = document.getElementById('pressContainer');
-    if (data.Press?.length) {
-      pressContainer.innerHTML = data.Press.map(p => `
-        <div class="press-card">
-          <a href="${p.Url}" target="_blank">
-            <img src="${p.Image}" alt="${p.Description}">
-            <h5 class="p-2">${p.Description}</h5>
-          </a>
-        </div>
-      `).join('');
-    }
+    const articlesContainer = document.getElementById('articlesContainer');
+    if (data.Articles && data.Articles.length > 0) {
+      articlesContainer.innerHTML = [...data.Articles, ...data.Articles].map(a => `
+        <div class="article-card">
+          <a href="Article.html?id=${a.No}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:#000;">
+            <img src="${a.ImageUrl}" alt="${a.Title}">
+            <div class="card-body">
+              <h5>${a.Title}</h5>
+              <p style="font-size:0.9rem;color:#6c757d;">${a.Date}</p>
+              <p style="font-size:0.95rem;">${a.Description}</p>
+              <div class="mt-auto"><small style="color:#6c757d;">Posted by ${a.PostedBy}</small></div>
+            </div>
+          </a>
+        </div>
+      `).join('');
+    }
 
-    /* Articles */
-    const articlesContainer = document.getElementById('articlesContainer');
-    if (data.Articles?.length) {
-      articlesContainer.innerHTML = data.Articles.map(a => `
-        <div class="article-card">
-          <a href="Article.html?id=${a.No}" style="display:block;text-decoration:none;color:#000;">
-            <img src="${a.ImageUrl}" alt="${a.Title}">
-            <div class="p-2">
-              <h5>${a.Title}</h5>
-              <p style="color:#6c757d;">${a.Date}</p>
-              <p>${a.Description}</p>
-              <small>Posted by ${a.PostedBy}</small>
-            </div>
-          </a>
-        </div>
-      `).join('');
-    }
-
-  } catch(err) {
-    console.error('Error loading info.json:', err);
-  }
+  } catch(err) {
+    console.error('Error loading info.json:', err);
+  }
 }
 
 function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
-  const donationCounter = document.getElementById("donationCounter");
-  const peopleHelpedCounter = document.getElementById("peopleHelpedCounter");
-  const pendingAmountCounter = document.getElementById("pendingAmountCounter");
+  const donationCounter = document.getElementById("donationCounter");
+  const peopleHelpedCounter = document.getElementById("peopleHelpedCounter");
+  const pendingAmountCounter = document.getElementById("pendingAmountCounter");
 
-  let donationCurrent = 0, peopleCurrent = 0, pendingCurrent = 0;
-  const donationSpeed = Math.max(1, Math.ceil(finalAmount / speed));
-  const peopleSpeed = Math.max(1, Math.ceil(finalDonations / speed));
-  const pendingSpeed = Math.max(1, Math.ceil(finalPendingAmt / speed));
+  let donationCurrent = 0, peopleCurrent = 0, pendingCurrent = 0;
+  // Calculate step size to complete the animation within the desired 'speed' (duration)
+  const donationSpeed = Math.max(1, Math.ceil(finalAmount / speed));
+  const peopleSpeed = Math.max(1, Math.ceil(finalDonations / speed));
+  const pendingSpeed = Math.max(1, Math.ceil(finalPendingAmt / speed));
 
-  function formatCurrency(num) { return "₹" + num.toLocaleString('en-IN'); }
+  function formatCurrency(num) { return "₹" + num.toLocaleString('en-IN'); }
+  function formatNumber(num) { return num.toLocaleString('en-IN'); }
 
-  function step() {
-    let running = false;
-    if (donationCurrent < finalAmount) { donationCurrent += donationSpeed; donationCurrent=Math.min(donationCurrent, finalAmount); donationCounter.textContent=formatCurrency(donationCurrent); running=true; }
-    if (peopleCurrent < finalDonations) { peopleCurrent += peopleSpeed; peopleCurrent=Math.min(peopleCurrent, finalDonations); peopleHelpedCounter.textContent=peopleCurrent.toLocaleString('en-IN'); running=true; }
-    if (pendingCurrent < finalPendingAmt) { pendingCurrent += pendingSpeed; pendingCurrent=Math.min(pendingCurrent, finalPendingAmt); pendingAmountCounter.textContent=formatCurrency(pendingCurrent); running=true; }
-
-    if(running) requestAnimationFrame(step);
-    else {
-      setInterval(() => {
-        donationCurrent++;
-        pendingCurrent++;
-        donationCounter.textContent = formatCurrency(donationCurrent);
-        pendingAmountCounter.textContent = formatCurrency(pendingCurrent);
-      }, 3000);
-    }
-  }
-  requestAnimationFrame(step);
+  function step() {
+    let running = false;
+    
+    // Total Donations Counter
+    if (donationCurrent < finalAmount) { 
+      donationCurrent += donationSpeed; 
+      if(donationCurrent > finalAmount) donationCurrent = finalAmount; 
+      donationCounter.textContent = formatCurrency(Math.floor(donationCurrent)); 
+      running = true; 
+    }
+    
+    // People Helped Counter
+    if (peopleCurrent < finalDonations) { 
+      peopleCurrent += peopleSpeed; 
+      if(peopleCurrent > finalDonations) peopleCurrent = finalDonations; 
+      peopleHelpedCounter.textContent = formatNumber(Math.floor(peopleCurrent)); 
+      running = true; 
+    }
+    
+    // Pending Amount Counter
+    if (pendingCurrent < finalPendingAmt) { 
+      pendingCurrent += pendingSpeed; 
+      if(pendingCurrent > finalPendingAmt) pendingCurrent = finalPendingAmt; 
+      pendingAmountCounter.textContent = formatCurrency(Math.floor(pendingCurrent)); 
+      running = true; 
+    }
+    
+    if(running) { 
+      requestAnimationFrame(step); 
+    } else {
+      // Continuous increment for Total Donations and Pending Amount after animation
+      setInterval(() => {
+        donationCurrent++;
+        pendingCurrent++;
+        donationCounter.textContent = formatCurrency(Math.floor(donationCurrent));
+        pendingAmountCounter.textContent = formatCurrency(Math.floor(pendingCurrent));
+      }, 3000); // Increments every 3 seconds
+    }
+  }
+  requestAnimationFrame(step);
 }
 
 loadData();
