@@ -8,25 +8,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
 <style>
-/* Arrow styling */
+/* Scroll Wrapper Fix */
 .scroll-wrapper {
   position: relative;
-  display: flex;
-  align-items: center;
+  overflow: hidden; /* Prevents arrows from moving */
+  width: 100%;
+  padding: 0 50px; /* Space for arrows */
 }
 
+/* Arrow Buttons */
 .scroll-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
-  background: rgba(0,0,0,0.5);
+  z-index: 20;
+  background: rgba(0,0,0,0.55);
   color: white;
   border: none;
-  font-size: 30px;
+  font-size: 32px;
   width: 45px;
   height: 45px;
-  line-height: 40px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -34,24 +35,29 @@
   align-items: center;
 }
 
-.left-btn { left: 0; }
-.right-btn { right: 0; }
+/* Left/Right Position */
+.left-btn { left: 5px; }
+.right-btn { right: 5px; }
 
+/* Button Hover */
 .scroll-btn:hover {
   background: rgba(0,0,0,0.8);
 }
 
-/* Mobile optimization */
+/* Mobile Optimized */
 @media (max-width: 768px) {
   .scroll-btn {
     font-size: 22px;
     width: 35px;
     height: 35px;
   }
+  .scroll-wrapper {
+    padding: 0 40px;
+  }
 }
 </style>
-
 </head>
+
 <body>
 
 <!-- Navbar placeholder -->
@@ -87,7 +93,7 @@
   <a href="Donate.html" class="btn btn-primary btn-lg">Donate Now</a>
 </div>
 
-<!-- Press Coverage Section -->
+<!-- Press Coverage -->
 <h2 class="section-title">Press Coverage</h2>
 <hr>
 
@@ -97,7 +103,7 @@
   <button class="scroll-btn right-btn" data-target="pressContainer">&#10095;</button>
 </div>
 
-<!-- Recent Articles Section -->
+<!-- Recent Articles -->
 <h2 class="section-title">Recent Articles</h2>
 <hr>
 
@@ -130,7 +136,7 @@ fetch("navbar.html")
   .catch(err => console.error("Navbar load failed:", err));
 </script>
 
-<!-- Load dynamic data -->
+<!-- Load JSON dynamic content -->
 <script>
 async function loadData() {
   try {
@@ -140,19 +146,19 @@ async function loadData() {
     const currentTime = new Date();
     const diffInSeconds = Math.floor((currentTime - startTime) / 1000);
     const value = diffInSeconds >= 0 ? Math.floor(diffInSeconds / 3) : 0;
-    const baseTotalDonations = data.TotalDonations || 0;
-    const basePendingAmount = data.PendingAmount || 0;
 
-    const updatedTotalDonations = baseTotalDonations + value;
-    const updatedPendingAmount = basePendingAmount + value;
+    animateCounters(
+      (data.TotalDonations || 0) + value,
+      data.PeopleHelped,
+      (data.PendingAmount || 0) + value,
+      data.CountSpeed || 50
+    );
 
-    animateCounters(updatedTotalDonations, data.PeopleHelped, updatedPendingAmount, data.CountSpeed || 50);
-
-    const pressContainer = document.getElementById('pressContainer');
-    if (data.Press && data.Press.length > 0) {
-      pressContainer.innerHTML = [...data.Press, ...data.Press].map(p => `
+    const press = document.getElementById("pressContainer");
+    if (data.Press) {
+      press.innerHTML = [...data.Press, ...data.Press].map(p => `
         <div class="press-card">
-          <a href="${p.Url}" target="_blank" style="display:flex;flex-direction:column;height:100%;">
+          <a href="${p.Url}" target="_blank">
             <img src="${p.Image}" alt="${p.Description}">
             <h5>${p.Description}</h5>
           </a>
@@ -160,54 +166,45 @@ async function loadData() {
       `).join('');
     }
 
-    const articlesContainer = document.getElementById('articlesContainer');
-    if (data.Articles && data.Articles.length > 0) {
-      articlesContainer.innerHTML = [...data.Articles, ...data.Articles].map(a => `
+    const articles = document.getElementById("articlesContainer");
+    if (data.Articles) {
+      articles.innerHTML = [...data.Articles, ...data.Articles].map(a => `
         <div class="article-card">
-          <a href="Article.html?id=${a.No}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:#000;">
+          <a href="Article.html?id=${a.No}">
             <img src="${a.ImageUrl}" alt="${a.Title}">
             <div class="card-body">
               <h5>${a.Title}</h5>
-              <p style="font-size:0.9rem;color:#6c757d;">${a.Date}</p>
-              <p style="font-size:0.95rem;">${a.Description}</p>
-              <div class="mt-auto"><small style="color:#6c757d;">Posted by ${a.PostedBy}</small></div>
+              <p style="color:#6c757d">${a.Date}</p>
+              <p>${a.Description}</p>
+              <small>Posted by ${a.PostedBy}</small>
             </div>
           </a>
         </div>
       `).join('');
     }
-
-  } catch(err) {
-    console.error('Error loading info.json:', err);
+  } catch (err) {
+    console.error("Error loading info.json:", err);
   }
 }
 
-function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
+function animateCounters(finalAmount, finalDonations, finalPending, speed) {
   const donationCounter = document.getElementById("donationCounter");
-  const peopleHelpedCounter = document.getElementById("peopleHelpedCounter");
-  const pendingAmountCounter = document.getElementById("pendingAmountCounter");
+  const peopleCounter = document.getElementById("peopleHelpedCounter");
+  const pendingCounter = document.getElementById("pendingAmountCounter");
 
-  let donationCurrent = 0, peopleCurrent = 0, pendingCurrent = 0;
-  const donationSpeed = Math.max(1, Math.ceil(finalAmount / speed));
-  const peopleSpeed = Math.max(1, Math.ceil(finalDonations / speed));
-  const pendingSpeed = Math.max(1, Math.ceil(finalPendingAmt / speed));
+  let d = 0, p = 0, pn = 0;
+  const dSpeed = Math.max(1, Math.ceil(finalAmount / speed));
+  const pSpeed = Math.max(1, Math.ceil(finalDonations / speed));
+  const pnSpeed = Math.max(1, Math.ceil(finalPending / speed));
 
-  function formatCurrency(num) { return "₹" + num.toLocaleString('en-IN'); }
+  function curr(n) { return "₹" + n.toLocaleString("en-IN"); }
 
   function step() {
-    let running = false;
-    if (donationCurrent < finalAmount) { donationCurrent += donationSpeed; if(donationCurrent>finalAmount) donationCurrent=finalAmount; donationCounter.textContent=formatCurrency(donationCurrent); running=true; }
-    if (peopleCurrent < finalDonations) { peopleCurrent += peopleSpeed; if(peopleCurrent>finalDonations) peopleCurrent=finalDonations; peopleHelpedCounter.textContent=peopleCurrent.toLocaleString('en-IN'); running=true; }
-    if (pendingCurrent < finalPendingAmt) { pendingCurrent += pendingSpeed; if(pendingCurrent>finalPendingAmt) pendingCurrent=finalPendingAmt; pendingAmountCounter.textContent=formatCurrency(pendingCurrent); running=true; }
-    if(running) { requestAnimationFrame(step); }
-    else {
-      setInterval(() => {
-        donationCurrent++;
-        pendingCurrent++;
-        donationCounter.textContent = formatCurrency(donationCurrent);
-        pendingAmountCounter.textContent = formatCurrency(pendingCurrent);
-      }, 3000);
-    }
+    let run = false;
+    if (d < finalAmount) { d += dSpeed; if (d>finalAmount) d=finalAmount; donationCounter.textContent = curr(d); run = true; }
+    if (p < finalDonations) { p += pSpeed; if (p>finalDonations) p=finalDonations; peopleCounter.textContent = p.toLocaleString("en-IN"); run = true; }
+    if (pn < finalPending) { pn += pnSpeed; if (pn>finalPending) pn=finalPending; pendingCounter.textContent = curr(pn); run = true; }
+    if (run) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
@@ -215,42 +212,36 @@ function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
 loadData();
 </script>
 
-<!-- Arrow + Mobile Swipe Script -->
+<!-- Arrow & Swipe JS -->
 <script>
-// Arrow scroll functionality
+// Arrow Scroll
 document.querySelectorAll(".scroll-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const container = document.getElementById(btn.dataset.target);
-        const cardWidth = container.firstElementChild?.offsetWidth || 300;
-        const scrollAmount = cardWidth + 20;
-
-        container.scrollBy({
-            left: btn.classList.contains("left-btn") ? -scrollAmount : scrollAmount,
-            behavior: "smooth"
-        });
+  btn.addEventListener("click", () => {
+    const container = document.getElementById(btn.dataset.target);
+    container.scrollBy({
+      left: btn.classList.contains("left-btn") ? -350 : 350,
+      behavior: "smooth"
     });
+  });
 });
 
-// Mobile swipe scrolling
+// Mobile Swipe Support
 document.querySelectorAll(".scroll-container").forEach(container => {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+  let startX = 0, scrollLeft = 0, isDown = false;
 
-    container.addEventListener("touchstart", (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-    });
+  container.addEventListener("touchstart", e => {
+    isDown = true;
+    startX = e.touches[0].pageX;
+    scrollLeft = container.scrollLeft;
+  });
 
-    container.addEventListener("touchmove", (e) => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - container.offsetLeft;
-        const walk = (x - startX) * 1.5;
-        container.scrollLeft = scrollLeft - walk;
-    });
+  container.addEventListener("touchmove", e => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX;
+    container.scrollLeft = scrollLeft - (x - startX) * 1.4;
+  });
 
-    container.addEventListener("touchend", () => { isDown = false; });
+  container.addEventListener("touchend", () => isDown = false);
 });
 </script>
 
