@@ -52,17 +52,6 @@
 
     </style>
 
-  <script>
-function scrollLeft(id) {
-    const container = document.getElementById(id);
-    container.scrollBy({ left: -350, behavior: 'smooth' });
-}
-
-function scrollRight(id) {
-    const container = document.getElementById(id);
-    container.scrollBy({ left: 350, behavior: 'smooth' });
-}
-</script>
 
 <body>
 
@@ -235,6 +224,18 @@ function animateCounters(finalAmount, finalDonations, finalPendingAmt, speed) {
 }
 
 loadData();
+</script>
+  
+  <script>
+function scrollLeft(id) {
+    const container = document.getElementById(id);
+    container.scrollBy({ left: -350, behavior: 'smooth' });
+}
+
+function scrollRight(id) {
+    const container = document.getElementById(id);
+    container.scrollBy({ left: 350, behavior: 'smooth' });
+}
 </script>
 
 </body>
